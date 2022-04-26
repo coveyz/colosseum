@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    22222
+    <p>{{counter}}</p>
+    3333
+    <!-- <p @click='testClick'>{{counter}}</p> -->
+    <p k-text="counter"></p>
+    44444
+    <p k-html="desc"></p>
+    55555
+    <div class="">
+      <p k-text="counter"></p>
+    </div>
+    66666
+    <!-- 双向绑定 -->
+    <input type="text" k-model="qq" />
+    <!-- 事件处理 -->
+    <button @click="changeName">呵呵</button>
+
+    <p>双向绑定</p>
+    <p>{{qq}}</p>
+    {{qq}}
+  </div>
+
+  <script src="./index.js"></script>
+
+  <script>
+    const app = new CVue({
+      el: '#app',
+      data: {
+        counter: 1,
+        qq: 0,
+        desc: '<p>美少男<span style="color:red">真棒</span></p>',
+        obj: {
+          name: 1212,
+          text: {
+            item: 'obj-children'
+          }
+        }
+      },
+      methods: {
+        testClick() {
+          app.counter++
+        },
+        changeName() {
+          app.counter++
+          console.log('ahahah', app.counter)
+        }
+      },
+    })
+    // setInterval(() => {
+    //   app.counter++
+    // }, 1000);
+
+    setTimeout(() => {
+      console.log(app.counter)
+      app.counter++
+      app.qq++
+    }, 1000);
+  </script>
+</body>
+
+</html>
