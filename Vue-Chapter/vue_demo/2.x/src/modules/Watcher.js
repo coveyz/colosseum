@@ -12,6 +12,7 @@ class Watcher {
 		Dep.target = null;
 	}
 	update() {
+		console.log('update=>', this);
 		this.get();
 	}
 }
