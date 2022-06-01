@@ -1,16 +1,16 @@
-import CVue from './modules/index';
+const CVue = require('./modules/index');
 
 const app = new CVue({
 	el: '#app',
 	data: {
-		counter: 1,
+		// counter: 1,
 		arr: [1, 2, 3],
-		obj: {
-			name: 1212,
-			text: {
-				item: 'obj-children',
-			},
-		},
+		// obj: {
+		// 	name: 1212,
+		// 	text: {
+		// 		item: 'obj-children',
+		// 	},
+		// },
 	},
 	render(h) {
 		// const d1 = document.createElement('div')
@@ -23,7 +23,12 @@ const app = new CVue({
 				id: 'app',
 			},
 			// this.counter + ''
-			[h('p', null, this.counter + ''), h('p', null, this.counter * 2 + ''), h('p', null, this.counter * 3 + '')]
+			[
+				// h('p', null, this.counter + ''),
+				// h('p', null, this.counter * 2 + ''),
+				// h('p', null, this.counter * 3 + ''),
+				h('p', null, this.arr + ''),
+			]
 			// [h('p', null, this.arr + '')]
 		);
 	},
@@ -36,13 +41,16 @@ const app = new CVue({
 // setInterval(() => {
 //   app.counter += 1
 // }, 1000);
-app.arr.push(44);
 // let qq = 0;
 // const timer = setInterval(() => {
-// 	app.arr.push(44);
+// 	app.arr.push(Math.random().toFixed(1));
 // 	qq++;
-// 	app.counter += 1;
+// 	// app.counter += 1;
 // 	if (qq >= 3) {
 // 		clearInterval(timer);
 // 	}
 // }, 1000);
+
+setTimeout(() => {
+	app.arr.push(44);
+}, 1000);

@@ -4,7 +4,7 @@ import { def } from '../utils/tools';
 const arrayProto = Array.prototype;
 //* 克隆一份
 export const arrayMethods = Object.create(arrayProto);
-console.log('arrayMethods=>', arrayMethods);
+// console.log('arrayMethods=>', arrayMethods);
 
 //* 数组 7个需要被覆盖的方法
 const methodsToPatch = ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'];
@@ -29,9 +29,10 @@ methodsToPatch.forEach((method) => {
 				break;
 		}
 		if (inserted) {
-			console.log('inserted=>', inserted, 'ob=>', ob);
+			// console.log('inserted=>', inserted, 'ob=>', ob);
 			ob.observeArray(inserted);
 		}
+    
 		ob.dep.notify();
 
 		return result;

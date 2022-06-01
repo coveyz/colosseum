@@ -21,6 +21,7 @@ module.exports = {
 			},
 		],
 	},
+	devtool: 'source-map',
 	plugins: [
 		new htmlWebpckPlugin({
 			template: resolve('./src/index.html'),

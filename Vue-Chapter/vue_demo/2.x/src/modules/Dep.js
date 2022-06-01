@@ -1,15 +1,20 @@
+let uid = 0;
+
 class Dep {
 	constructor() {
+		this.id = uid++;
 		this.deps = new Set();
 	}
 	addDep(watcher) {
 		this.deps.add(watcher);
 	}
-	depDetail() {
-		console.log('dep-detail=>', this.deps);
+	depend() {
+		// console.log('Dep-detail-depend', Dep.target);
+		if (Dep.target) {
+			Dep.target.addDep(this);
+		}
 	}
 	notify() {
-		console.log('dep-notify=>', this.deps);
 		this.deps.forEach((watcher) => watcher.update());
 	}
 }

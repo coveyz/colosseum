@@ -24,10 +24,10 @@ const protoAugment = (target, src) => {
 
 export class Observer {
 	constructor(data) {
-		this.dep = new Dep();
 		this.value = data;
-		def(data, '_ob_', this);
+		this.dep = new Dep();
 		this.vmCount = 0;
+		def(data, '_ob_', this);
 		if (Array.isArray(data)) {
 			protoAugment(data, arrayMethods);
 			this.observeArray(data);
@@ -65,7 +65,7 @@ export class Observer {
 const dependArray = (value) => {
 	for (let e, i = 0, l = value.length; i < l; i++) {
 		e = value[i];
-		e && e_ob_;
+		e && e_ob_ && e._ob_dep.depend();
 		if (Array.isArray(e)) {
 			dependArray(e);
 		}
@@ -73,19 +73,20 @@ const dependArray = (value) => {
 };
 
 const defineReactive = (data, key, val) => {
-	observe(val);
 	const dep = new Dep();
 	// console.log('deps=>?', dep, key);
+	let childOb = observe(val);
 	Object.defineProperty(data, key, {
 		get() {
 			// Dep.target && dep.addDep(Dep.target);
-			console.log('Dep=?', Dep.target);
+			// console.log('Dep=?', Dep.target, dep);
 			if (Dep.target) {
-				dep.addDep(Dep.target);
-				console.log('isArraydata=>', Dep.target, data);
-				if (Array.isArray(data)) {
-					console.log('isArraydata=>', data, key);
-					dependArray(data);
+				dep.addDep(Dep.tarxget);
+				if (childOb) {
+					childOb.dep.depend();
+					if (Array.isArray(val)) {
+						dependArray(data);
+					}
 				}
 			}
 			return val;
@@ -93,9 +94,7 @@ const defineReactive = (data, key, val) => {
 		set(newVal) {
 			if (newVal !== val) {
 				val = newVal;
-				console.log('defineReactive=>', val);
 				dep.notify();
-
 				observe(val);
 			}
 		},
