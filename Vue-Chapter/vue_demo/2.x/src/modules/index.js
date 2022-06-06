@@ -1,6 +1,6 @@
 import { observe } from './observe';
 import proxy from './proxy';
-import Watcher from './Watcher';
+import Watcher from './watcher';
 
 class CVue {
 	constructor(op) {

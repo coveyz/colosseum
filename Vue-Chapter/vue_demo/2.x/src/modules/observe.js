@@ -1,6 +1,6 @@
-const { def } = require('../utils/tools');
-const Dep = require('./Dep');
-const { arrayMethods } = require('./array');
+import Dep from './dep';
+import { def } from '../utils/tools';
+import { arrayMethods } from './array';
 
 /**
  *
@@ -28,6 +28,7 @@ export class Observer {
 		this.dep = new Dep();
 		this.vmCount = 0;
 		def(data, '_ob_', this);
+
 		if (Array.isArray(data)) {
 			protoAugment(data, arrayMethods);
 			this.observeArray(data);
@@ -81,7 +82,7 @@ const defineReactive = (data, key, val) => {
 			// Dep.target && dep.addDep(Dep.target);
 			// console.log('Dep=?', Dep.target, dep);
 			if (Dep.target) {
-				dep.addDep(Dep.tarxget);
+				dep.addDep(Dep.target);
 				if (childOb) {
 					childOb.dep.depend();
 					if (Array.isArray(val)) {

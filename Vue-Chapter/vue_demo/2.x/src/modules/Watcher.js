@@ -1,4 +1,7 @@
-import Dep from './Dep';
+import Dep from './dep';
+import { queueWatcher } from './scheduler';
+
+let uid = 0;
 
 class Watcher {
 	constructor(vm, fn) {
@@ -8,6 +11,8 @@ class Watcher {
 		this.newDepIds = new Set();
 		this.newDeps = [];
 
+		this.id = ++uid;
+
 		this.get();
 	}
 	get() {
@@ -16,7 +21,8 @@ class Watcher {
 		Dep.target = null;
 	}
 	update() {
-		this.get();
+		// this.get();
+		queueWatcher(this);
 	}
 	addDep(dep) {
 		const id = dep.id;
@@ -27,6 +33,9 @@ class Watcher {
 				dep.addDep(this);
 			}
 		}
+	}
+	run() {
+		this.get();
 	}
 }
 

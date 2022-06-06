@@ -1,3 +1,4 @@
+
 let uid = 0;
 
 class Dep {
@@ -19,4 +20,4 @@ class Dep {
 	}
 }
 
-module.exports = Dep;
+export default Dep;
