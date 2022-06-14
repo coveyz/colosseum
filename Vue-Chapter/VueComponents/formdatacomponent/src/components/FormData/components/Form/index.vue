@@ -38,17 +38,23 @@ export default {
   },
   methods: {
     validate(cb) {
+
+
       if (this.fields.length === 0 && cb) {
         cb(true)
       }
-      let valid = true, invalidFields = {}
+      let valid = true, invalidFields = {}, count = 0
       this.fields.forEach(field => {
         field.validate("", (message, field) => {
           if (message) {
             valid = false;
           }
           invalidFields = Object.assign({}, invalidFields, field)
-          cb(valid, invalidFields)
+
+          if (typeof cb === "function" && ++count === this.fields.length) {
+            cb(valid, invalidFields)
+          }
+
         })
       });
     }

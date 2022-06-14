@@ -21,6 +21,8 @@
 
 <script>
 import { CInput, Form, FormItem } from './components'
+import { Notice } from '@/components'
+import { create } from '@/utils/tools'
 export default {
   components: {
     CInput, Form, FormItem,
@@ -41,7 +43,17 @@ export default {
     validateModel() {
       this.$refs.form.validate((valid, state) => {
         if (valid) {
-          console.log('ok')
+          const notice = create(Notice, {
+            title: "state",
+            message: valid ? "登陆成功!" : "校验失败!",
+            duration: 20000
+          })
+
+          console.log('ok', notice)
+
+          notice.show()
+          // console.log('xxx', valid)
+
         } else {
           console.log('error=>', state)
         }
