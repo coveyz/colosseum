@@ -46,13 +46,12 @@ export default {
           const notice = create(Notice, {
             title: "state",
             message: valid ? "登陆成功!" : "校验失败!",
-            duration: 20000
+            duration: 4000
           })
 
           console.log('ok', notice)
 
           notice.show()
-          // console.log('xxx', valid)
 
         } else {
           console.log('error=>', state)

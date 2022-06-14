@@ -19,14 +19,14 @@ export default {
     value: [String, Number]
   },
   watch: {
-    value(val) {
-      console.log('watch=>', val)
+    // value(val) {
+      // console.log('watch=>', val)
       // this.dispatch("ELformItem", "el.form.change", [val])
-    }
+    // }
   },
   methods: {
     handleInput(event) {
-      console.log('handleInput=>', event)
+      // console.log('handleInput=>', event)
       this.$emit('input', event.target.value)
     },
     handleChange(event) {
