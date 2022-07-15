@@ -1,4 +1,5 @@
 import Vue from 'vue';
+
 //* new Vue
 export const create = (Comp, props) => {
 	const vm = new Vue({
