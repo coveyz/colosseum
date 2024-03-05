@@ -1,8 +1,7 @@
 <template>
-  <div class="box"
-       v-if="isShow">
-    <h3>{{title}}</h3>
-    <p class="box-content">{{message}}</p>
+  <div class="box" v-if="isShow">
+    <h3>{{ title }}</h3>
+    <p class="box-content">{{ message }}</p>
   </div>
 </template>
 
@@ -11,21 +10,21 @@ export default {
   props: {
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     message: {
       type: String,
-      default: ""
+      default: "",
     },
     duration: {
       type: Number,
-      default: 1000
-    }
+      default: 1000,
+    },
   },
   data() {
     return {
-      isShow: false
-    }
+      isShow: false,
+    };
   },
   methods: {
     show() {
@@ -34,10 +33,10 @@ export default {
     },
     hide() {
       this.isShow = false;
-      this.remove()
-    }
+      this.remove();
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

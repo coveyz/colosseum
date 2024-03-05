@@ -6,61 +6,59 @@
 
 <script>
 export default {
-  name: 'Elform',
+  name: "Elform",
   componentName: "Elform",
   props: {
     model: {
       type: Object,
       required: true,
-      default: () => { }
+      default: () => {},
     },
     rules: {
       type: Object,
-    }
+    },
   },
   provide() {
     return {
-      form: this
-    }
+      form: this,
+    };
   },
   data() {
     return {
-      fields: []
-    }
+      fields: [],
+    };
   },
   created() {
-    this.$on('el.form.addField', (field) => {
+    this.$on("el.form.addField", (field) => {
       if (field) {
-        this.fields.push(field)
+        this.fields.push(field);
         // console.log('fields=>', this.fields)
       }
-    })
+    });
   },
   methods: {
     validate(cb) {
-
-
       if (this.fields.length === 0 && cb) {
-        cb(true)
+        cb(true);
       }
-      let valid = true, invalidFields = {}, count = 0
-      this.fields.forEach(field => {
+      let valid = true,
+        invalidFields = {},
+        count = 0;
+      this.fields.forEach((field) => {
         field.validate("", (message, field) => {
           if (message) {
             valid = false;
           }
-          invalidFields = Object.assign({}, invalidFields, field)
+          invalidFields = Object.assign({}, invalidFields, field);
 
           if (typeof cb === "function" && ++count === this.fields.length) {
-            cb(valid, invalidFields)
+            cb(valid, invalidFields);
           }
-
-        })
+        });
       });
-    }
+    },
   },
-}
+};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
